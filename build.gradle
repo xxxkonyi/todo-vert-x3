@@ -23,7 +23,7 @@ mainClassName = 'io.vertx.core.Launcher'
 
 shadowJar {
     manifest{
-        attributes 'Main-Verticle': 'io.vertx.example.fatjar.http2.Server'
+        attributes 'Main-Verticle': 'org.uoiu.todo.Server'
     }
     mergeServiceFiles {
         include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
