@@ -31,5 +31,5 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "description": ""
+  "description": "chat web app"
 }
