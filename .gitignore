@@ -15,3 +15,4 @@ out/
 build/
 .gradle/
 classes/
+node_modules/
