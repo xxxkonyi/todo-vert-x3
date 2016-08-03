@@ -8,7 +8,7 @@
 
 FROM java:8-jre
 
-ENV VERTICLE_FILE todo-vert-x3-3.3.2-all.jar
+ENV VERTICLE_FILE command-side-3.3.2-all.jar
 
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles
@@ -21,4 +21,4 @@ COPY build/libs/$VERTICLE_FILE $VERTICLE_HOME/
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar $VERTICLE_FILE"]
+CMD ["java -Djava.security.egd=file:/dev/./urandom -jar $VERTICLE_FILE"]

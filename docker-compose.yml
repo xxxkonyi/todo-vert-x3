@@ -1,0 +1,10 @@
+api:
+  build: command-side
+  ports:
+    - 8080:8080
+webapp:
+  build: webapp
+  ports:
+    - 8081:80
+  links:
+    - api

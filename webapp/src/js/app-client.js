@@ -24,7 +24,7 @@ class App extends Component {
       this.refs.author.refs.input.focus();
     }, 100);
 
-    this.eventBus  = new EventBus('http://localhost:8080/eventbus');
+    this.eventBus  = new EventBus('http://192.168.99.100:8080/eventbus');
     const eb = this.eventBus;
     const self = this;
     // Listen for messages coming in
