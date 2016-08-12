@@ -15,6 +15,7 @@ version = '3.3.2'
 sourceCompatibility = '1.8'
 
 dependencies {
+    compile 'org.slf4j:slf4j-simple:1.7.12'
     compile "io.vertx:vertx-core:$version"
     compile "io.vertx:vertx-web:$version"
     compile 'io.netty:netty-tcnative-boringssl-static:1.1.33.Fork17'
