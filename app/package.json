@@ -1,0 +1,16 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo app",
+  "repository": "https://github.com/xxxkonyi/todo-vert-x3.git",
+  "main": "bundle.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors --watch"
+  },
+  "author": "konyi",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
