@@ -11,17 +11,21 @@ repositories {
     }
 }
 
-version = '3.3.2'
+group = 'uoiu'
+version = '0.1'
+ext {
+    vertxVersion = "3.3.2"
+}
 sourceCompatibility = '1.8'
 
 dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.12'
-    compile "io.vertx:vertx-core:$version"
-    compile "io.vertx:vertx-web:$version"
+    compile 'io.vertx:vertx-core:${vertxVersion}'
+    compile "io.vertx:vertx-web:${vertxVersion}"
     compile 'io.netty:netty-tcnative-boringssl-static:1.1.33.Fork17'
 }
 
-mainClassName = 'io.vertx.core.Launcher'
+mainClassName = 'org.uoiu.todo.Server'
 
 shadowJar {
     manifest{
