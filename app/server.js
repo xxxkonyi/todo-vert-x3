@@ -1,47 +1,18 @@
-import express from 'express'
-import path from 'path'
-import compression from 'compression'
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { match, RouterContext } from 'react-router'
-import routes from './modules/routes'
+var WebpackDevServer = require('webpack-dev-server');
+var webpack = require('webpack');
+var config = require('./webpack.config');
 
-var app = express()
+var server = new WebpackDevServer(webpack(config), {
+  publicPath: 'http://localhost:8080/',
+  contentBase: './build/release',
+  hot: true,
+  noInfo: true
+});
 
-app.use(compression())
+server.listen(8080, 'localhost', function(err) {
+  if (err) {
+    console.log(err);
+  }
 
-// serve our static stuff like index.css
-app.use(express.static(path.join(__dirname, 'public'), {index: false}))
-
-// send all requests to index.html so browserHistory works
-app.get('*', (req, res) => {
-  match({ routes, location: req.url }, (err, redirect, props) => {
-    if (err) {
-      res.status(500).send(err.message)
-    } else if (redirect) {
-      res.redirect(redirect.pathname + redirect.search)
-    } else if (props) {
-      // hey we made it!
-      const appHtml = renderToString(<RouterContext {...props}/>)
-      res.send(renderPage(appHtml))
-    } else {
-      res.status(404).send('Not Found')
-    }
-  })
-})
-
-function renderPage(appHtml) {
-  return `
-    <!doctype html public="storage">
-    <html>
-    <meta charset=utf-8/>
-    <title>My First React Router App</title>
-    <div id=app>${appHtml}</div>
-    <script src="/bundle.js"></script>
-   `
-}
-
-var PORT = process.env.PORT || 8081
-app.listen(PORT, function() {
-  console.log('Production Express server running at localhost:' + PORT)
-})
+  console.log('Listening at localhost:8080');
+});

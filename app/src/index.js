@@ -1,3 +1,6 @@
+// Bootstrap CSS
+import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
