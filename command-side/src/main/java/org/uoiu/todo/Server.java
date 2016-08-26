@@ -38,7 +38,7 @@ public class Server extends AbstractVerticle {
     router.route().handler(LoggerHandler.create());
     router.route().handler(ResponseTimeHandler.create());
 
-    router.route().path("/").handler(request -> request.response().end("Hello Vertx Chat Event Bus !"));
+    router.route().path("/").handler(request -> request.response().end("Hello Vertx Event Bus !"));
 
     router.route("/eventbus/*").handler(CorsHandler.create("*")
       .allowedMethod(HttpMethod.GET)
@@ -52,13 +52,12 @@ public class Server extends AbstractVerticle {
 
     // Allow events for the designated addresses in/out of the event bus bridge
     BridgeOptions bridgeOptions = new BridgeOptions()
-      .addInboundPermitted(new PermittedOptions().setAddress("chat.message"))
-      .addOutboundPermitted(new PermittedOptions().setAddress("chat.message"));
+      .addInboundPermitted(new PermittedOptions().setAddress("axon.sender"))
+      .addOutboundPermitted(new PermittedOptions().setAddress("axon.publisher"));
 
     // Create the event bus bridge and add it to the router.
     SockJSHandler sockJSHandler = SockJSHandler.create(vertx).bridge(bridgeOptions);
-    router.route("/eventbus/*")
-      .handler(sockJSHandler);
+    router.route("/eventbus/*").handler(sockJSHandler);
 
     // Start the web server and tell it to use the router to handle requests.
     vertx.createHttpServer().requestHandler(router::accept).listen(PORT);
