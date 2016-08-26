@@ -18,7 +18,11 @@ npm i --save-dev babel-preset-es2015 babel-preset-react
 npm i --save-dev http-server
 npm i --save-dev bootstrap@3
 
+npm i --save-dev redux-devtools redux-devtools-dock-monitor redux-devtools-log-monitor
+
+npm i --save react-redux
 npm i --save bootstrap-material-design
+npm i --save isomorphic-fetch
 
 # run
 NODE_ENV=dev npm start

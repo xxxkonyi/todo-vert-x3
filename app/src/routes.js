@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import App from './App'
-import Home from './Home'
-import About from './About'
-import Repos from './Repos'
-import Repo from './Repo'
+import App from './containers/App'
+import Home from './containers/Home'
+import About from './containers/About'
+import Repos from './containers/Repos'
+import Repo from './containers/Repo'
 
 module.exports = {
   path: '/',

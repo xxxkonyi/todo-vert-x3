@@ -14,7 +14,7 @@ const bundle = ['./src/index'];
 const plugins = [
   new HtmlWebpackPlugin({
     title: 'My First React Router App',
-    favicon: './src/img/favicon.ico',
+    favicon: './src/assets/img/240.png',
     template:'./src/index.html',
     filename: 'index.html',
     hash: true,
