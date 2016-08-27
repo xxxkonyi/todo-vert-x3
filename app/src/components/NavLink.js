@@ -1,4 +1,4 @@
-require('./NavLink.css')
+import './css/NavLink.css'
 
 import React from 'react'
 import { Link } from 'react-router'

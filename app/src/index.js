@@ -8,6 +8,18 @@ import configureStore from './store/configureStore'
 import { observableFromStore } from 'redux-rx';
 import EventBus from 'vertx3-eventbus-client';
 
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+import {deepOrange500} from 'material-ui/styles/colors'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+injectTapEventPlugin()
+const muiTheme = getMuiTheme({
+  palette: {
+  }
+});
+
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -15,19 +27,36 @@ observableFromStore(store).subscribe(state => {
   console.debug('state changed', state)
 })
 
-const eventBus  = new EventBus('http://localhost:8082/eventbus')
-eventBus.onopen = function (e) {
-  eventBus.registerHandler('axon.publisher', (err, message) => {
-    console.log('received a message: ' + JSON.stringify(message))
-  })
+const createEventBus = () => {
+  const eventBus  = new EventBus('http://localhost:8082/eventbus')
+  eventBus.onopen = (e) => {
+    console.log('API Server opened')
 
-  eventBus.send('axon.sender', {
-    identifier: Date.now(),
-    commandName: 'doDuang',
-    payload: { message: 'do duang' },
-    metaData: { userId : 1}
-  })
+    eventBus.registerHandler('axon.publisher', (err, message) => {
+      console.log('received a message: ' + JSON.stringify(message))
+    })
+
+    eventBus.send('axon.sender', {
+      identifier: Date.now(),
+      commandName: 'send_duang',
+      payload: { message: 'do send_duang' },
+      metaData: { userId : 1}
+    }, (nothing, rawMessage) => {
+      console.log('received a reply', rawMessage)
+    })
+
+    eventBus.publish('axon.sender', {
+      identifier: Date.now(),
+      commandName: 'publish_duang',
+      payload: { message: 'do publish_duang' },
+      metaData: { userId : 1}
+    })
+  }
+  eventBus.onclose = (e) => {
+    console.log('API Server closed')
+  }
 }
+createEventBus()
 
 //const stateStream = storeToStateStream(store);
 //stateStream
@@ -38,6 +67,8 @@ eventBus.onopen = function (e) {
 //  });
 
 render(
-  <Root store={store} history={history} />,
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <Root store={store} history={history} />
+  </MuiThemeProvider>,
   document.getElementById('root')
 )
