@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Grid, Cell } from 'react-mdl'
 import Duang from '../components/Duang'
 
 import { actionCreators } from '../actions'
@@ -10,9 +11,9 @@ import { connect } from 'react-redux'
 
 const Home = ({ ...props, duang, doDuang }) => {
   return(
-    <div>
-      <Duang {...duang} doDuang={() => doDuang('do duang')} />
-    </div>
+    <Grid>
+        <Cell col={12}><Duang {...duang} doDuang={() => doDuang('加印记')} /></Cell>
+    </Grid>
   )
 }
 

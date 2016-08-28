@@ -8,18 +8,6 @@ import configureStore from './store/configureStore'
 import { observableFromStore } from 'redux-rx';
 import EventBus from 'vertx3-eventbus-client';
 
-import injectTapEventPlugin from 'react-tap-event-plugin'
-
-import {deepOrange500} from 'material-ui/styles/colors'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-injectTapEventPlugin()
-const muiTheme = getMuiTheme({
-  palette: {
-  }
-});
-
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -67,8 +55,6 @@ createEventBus()
 //  });
 
 render(
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <Root store={store} history={history} />
-  </MuiThemeProvider>,
+  <Root store={store} history={history} />,
   document.getElementById('root')
 )

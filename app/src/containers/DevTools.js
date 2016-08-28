@@ -21,8 +21,8 @@ const DevTools = createDevTools(
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
     defaultSize={0.4}
-    defaultPosition="bottom"
-    defaultIsVisible={true}
+    defaultPosition="right"
+    defaultIsVisible={false}
   >
     <ChartMonitor
      theme='tomorrow'

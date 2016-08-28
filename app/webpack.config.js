@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -28,7 +28,7 @@ const plugins = [
     to: releasePath,
     toType: 'dir'
   }]),
-  new ExtractTextPlugin("css/[name].css"),
+  new ExtractTextPlugin('css/[name].css'),
   new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
 ];
 const jsLoaders = ['babel'];
@@ -67,7 +67,7 @@ module.exports = {
   output: {
     path: outputPath,
     filename: 'js/[name].js',
-		publicPath: "/"
+		publicPath: '/'
   },
   devServer:{
     contentBase: outputPath,
@@ -84,7 +84,7 @@ module.exports = {
   },
   module: {
     loaders: [
-//      { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192" },
+      { test: /\.(gif|jpg|png)$/, loader: 'url-loader?limit=8192&name=[path][name].[ext]' },
       { test: /\.js$/, exclude: /node_modules/, loaders: jsLoaders },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')},

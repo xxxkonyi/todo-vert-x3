@@ -1,0 +1,14 @@
+.qzy-layout-transparent {
+  /*background: url('../img/transparent.jpg') center / cover;*/
+}
+.qzy-layout-transparent .mdl-layout__header,
+.qzy-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if your background is light. */
+  color: black;
+}
+.logo{
+  background-image: url('http://css.mafengwo.net/images/header-small-sprites.png');
+  width: 150px;
+  height: 32px;
+  display: inline-block;
+}
